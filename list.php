@@ -22,7 +22,10 @@ while ($row = mysql_fetch_row($result)) {
 }
 
 $query = 'SELECT COUNT(*), Extra.name, Extra.price FROM UserOrderExtra ' .
-    'JOIN Extra ON Extra.id = UserOrderExtra.extra_id GROUP BY extra_id';
+    'JOIN Extra ON Extra.id = UserOrderExtra.extra_id ' .
+    'JOIN UserOrder ON UserOrder.id = UserOrderExtra.userorder_id ' .
+    'WHERE UserOrder.date = curdate() ' .
+    'GROUP BY extra_id';
 
 $result = mysql_query($query);
 while ($row = mysql_fetch_row($result)) {
