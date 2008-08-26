@@ -65,7 +65,8 @@ $fund_needed = min($fund, ceil($_POST['tax'] + $_POST['tip'] - ceil($extra_per) 
 <?php
 foreach ($users as $user) {
     echo '<tr><td>';
-    echo $user[0] . '</td><td>' . $user[2] . '</td></tr>';
+    echo $user[0] . '</td><td>' . $user[2] . '</td>';
+    echo '<td><input type="text" size="3" /></td>';
 }
 ?>
 <tr><td><b>Fund</b></td><td><b><?php echo $fund_needed ?></b></td></tr>
