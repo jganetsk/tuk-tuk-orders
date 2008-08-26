@@ -3,6 +3,15 @@
 mysql_connect('localhost','jason') || die('Could not connect: ' . mysql_error());
 mysql_select_db('Tuktuk') || die('Could not open database: ' . mysql_error());
 
+$result = mysql_query("SELECT value FROM Config WHERE name = 'taking_orders'");
+$row = mysql_fetch_row($result);
+if (!$row) {
+    die('Please add taking_orders config option to the database.');
+}
+if (!$row[0]) {
+    die('No longer taking orders! Talk to Jason.');
+}
+
 $result = mysql_query('SELECT id, name FROM User ORDER BY name ASC');
 $users = array();
 while ($row = mysql_fetch_row($result)) {
